@@ -1,0 +1,41 @@
+  <div ui-content-for="title">
+      <span>Filmsuche</span>
+  </div>
+
+	<div class="scrollable" ng-scope ng-controller="FilmSearchCrtl as search">
+		<div class="scrollable-header ap-name " style="padding-top: 10px; padding-left:20px" >
+			<h1 >Suche nach Filmen... <span class="badge progress-bar-info" > {{ sfilmCount }} </span></h1>  
+	  		<input type="text" placeholder="Suchen..." ng-model="searchText" style="width:50%">
+	  		<span><button ng-click="search.tuwas()" >Start Suche</button></span>
+	    </div>	
+		<div class="scrollable-content" >
+			<div class="list-group" >
+					
+					<div ng-app="FilmList" >
+					        <a  ng-href="#/film/{{film.id}}" class="list-group-item row" ng-repeat="film in searchFilme">	
+						        <span ng-if="!film.id">
+						        	 <img class="col-xs-3" style="max-width: 100px;" ng-src="images\film.png"></img>
+						        	<span class="col-xs-9 alert-info" ng-bind="film.full_filename"></span>
+								</span>
+					        	<span ng-if="film.id">
+					        	    <span ng-if="!film.poster_path"> 
+					        	    	 <img class="col-xs-3" style="max-width: 100px;" ng-src="images\film.png"></img>
+					        	     </span>
+					        	    <span ng-if="film.poster_path"> 
+						            	<img class="col-xs-3" style="max-width: 100px;" ng-src={{"http://image.tmdb.org/t/p/w92/"+film.poster_path}}></img>
+						             </span>
+						            <div class="col-xs-4">
+						            	<div style="font-size: 20px;" ng-bind="film.title"></div>
+							            <div>Jahr: <span ng-bind="film.release_date"></span> </div>
+							            <div ng-bind-template="TMDB#: {{film.id}}"></div>
+						        	</div>
+						        	<div class="col-xs-5" ng-bind="film.overview"></div>
+
+						        		
+						        </span>	         
+					        </a>
+					</div>
+				
+			</div>
+		</div>
+	</div>

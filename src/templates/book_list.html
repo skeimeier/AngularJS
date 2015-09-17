@@ -1,0 +1,20 @@
+<section class="section container-fluid">
+  <div ui-content-for="title">
+      <span>Buchliste</span>
+  </div>
+	
+	<div ng-app="BookList" ng-controller="BookListCtrl as len">
+
+	  <h1 class="page-header">Liste <span class="badge"> {{ len }}</span> </h1> 
+	</div>
+		<div ng-app="BookList" ng-controller="BookListCtrl as books">
+		<input type="text" placeholder="Suchen..."
+		       ng-model="searchText">
+		<div class="list-group">
+		        <a  class="list-group-item row" ng-repeat="book in books | orderBy: getBookOrder | filter: searchText">		       
+			            <span class="col-md-4" ng-bind="book.title"></span>
+			            <span class="col-md-4" ng-bind="book.author"></span>
+			            <span class="col-md-4" ng-bind="book.isbn"></span>		           
+		        </a>
+		</div>
+</section>

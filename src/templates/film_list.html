@@ -1,0 +1,33 @@
+  <div ui-content-for="title">
+      <span>Filmliste</span>
+  </div>
+
+	<div class="scrollable" >
+		<div class="scrollable-header ap-name ng-scope" style="padding-top: 10px; padding-left:20px" ng-controller="FilmListCrtl as filmCount">
+			<h1 >Filme <span class="badge progress-bar-info" ng-bind="filmCount"></span></h1>  
+	    </div>
+		
+	  		<input type="text" placeholder="Suchen..." ng-model="searchText.origTitle" style="width:100%">
+		<div class="scrollable-content" >
+			<div class="list-group" >
+					
+					<div ng-app="FilmList" ng-controller="FilmListCrtl as filme">
+					        <a  ng-href="#/film/{{film.tmdbID}}" class="list-group-item row" ng-repeat="film in filme | filter: searchText">	
+						        <span ng-if="!film.tmdbID">
+						        	 <img class="col-xs-3" style="max-width: 100px;" ng-src="images\film.png"></img>
+						        	<span class="col-xs-9 alert-info" ng-bind="film.full_filename"></span>
+								</span>
+					        	<span ng-if="film.tmdbID">       
+						            <img class="col-xs-3" style="max-width: 100px;" ng-src={{"http://image.tmdb.org/t/p/w92/"+film.poster_path}}></img>
+						            <div class="col-xs-9">
+						            	<div style="font-size: 20px;" ng-bind="film.origTitle"></div>
+							            <div>IMDB: <span class="badge progress-bar-info" ng-bind="film.imdbRating"></span> </div>
+							            <div ng-bind="film.tmdbID"></div>
+						        	</div>	
+						        </span>	         
+					        </a>
+					</div>
+				
+			</div>
+		</div>
+	</div>

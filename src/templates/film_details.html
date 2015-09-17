@@ -1,0 +1,78 @@
+<section class="section scrollable" ng-app="MyFirst" ng-controller="film_details as film">
+   <div ui-content-for="title">
+      <span>Film - Details</span>
+  </div>
+       
+            <div class="scrollable-content" >
+                <h1 class="page-header " ng-bind="film.title" style="text-align:center"></h1>
+                <a href="#/filme" class="page-header">Zurück</a>  
+               <div class="list-group-item row">   
+                    <img class="col-xs-3" style="max-width: 200px;" ng-src={{"http://image.tmdb.org/t/p/w500/"+film.poster_path}}></img>
+                    <div class="col-xs-9">
+                        
+                            <div ><b ng-bind-template="Jahr: {{ film.release_date }}"></b></div>
+                            <div ng-bind-template="Länge: {{ film.runtime }} min"></div>
+                            <div ng-bind-template="ID: {{ tmdbID }}"></div>
+                            <div><span ng-repeat="genre in film.genres" ng-bind-template =" {{genre.name}} /"></span></div>
+                            <div><span ng-repeat="country in film.production_countries" ng-bind-template =" {{country.iso_3166_1}} -"></span></div>
+                    </div>              
+                </div>
+                <!--
+                    <hr>
+                    <h3>Story</h3>
+                    <p ng-bind="film.overview" >
+                </p>
+                -->
+                    
+                <div class="section">
+                  <div class="panel-group"                   
+                    ui-state='myAccordion' 
+                    ui-default='1'>
+
+                    <div class="panel panel-default" >
+                        <div class="panel-heading" ui-set="{'myAccordion': 1}">
+                            <h4 class="panel-title">
+                                Story
+                            </h4>
+                        </div>
+
+                        <div ui-if="myAccordion == 1">
+                            <div class="panel-body" >                          
+                                <p ng-bind="film.overview" >
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" >
+                        <div class="panel-heading" ui-set="{'myAccordion': 2}">
+                            <h4 class="panel-title">
+                                Cast
+                            </h4>
+                        </div>
+
+                        <div ui-if="myAccordion == 2">
+                            <div class="panel-body" >                          
+                                <div ng-repeat="cast in film.casts.cast"><b>{{cast.name}} </b>als <i>{{cast.character}}</i></div>
+                              
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" >
+                        <div class="panel-heading" ui-set="{'myAccordion': 3}">
+                            <h4 class="panel-title">
+                                Crew
+                            </h4>
+                        </div>
+
+                        <div ui-if="myAccordion == 3">
+                            <div class="panel-body" >                          
+                                  <div ng-repeat="crew in film.casts.crew"> <b>{{crew.job}}: </b><i>{{crew.name}}</i></div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+                </div>
+                      
+            </div>
+  
+</section>

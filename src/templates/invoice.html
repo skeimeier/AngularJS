@@ -1,0 +1,67 @@
+
+
+<section class="section container-fluid" >
+  <div ui-content-for="title">
+      <span>Invoice</span>
+  </div>
+    <h1 class="page-header">Invoice</h1>  
+    <div ng-app="invoice" ng-controller="InvoiceController as invoice">
+    <form role="form" >
+    <fieldset>
+      <legend>Invoice</legend>
+        <div class="form-group has-success has-feedback">
+          <label>Quantity: </label>
+          <input type="number"
+                 ng-model="invoice.qty" 
+                 min="0" 
+                 required
+                 class="form-control"
+          >
+        </div>
+        <div class="form-group row"> 
+          <div class="col-xs-8">
+            <label>Costs: </label>
+            <input type="number" 
+                   class="form-control"
+                   min="0" 
+                   ng-model="invoice.cost" 
+                   required >
+          </div>
+          <div class="col-xs-4">
+              <label>Wäherung: </label>
+              <select class="form-control" ng-model="invoice.inCurr">
+                  <option ng-repeat="c in invoice.currencies">{{c}}</option>
+              </select>
+          </div>
+        </div>
+    </fieldset>
+    <hr>
+      <div>
+        <b>Total:</b>
+        <span ng-repeat="c in invoice.currencies">
+          {{invoice.total(c) | currency:c}}
+        </span>
+        <hr>
+        <a href="" 
+          ui-turn-on="modal1"
+          class="btn btn-default">Pay</a>
+      </div>
+    </div>
+    <div ui-content-for="modals">
+        <div ng-include="'modal1.html'"></div>
+    </div>
+    <br>
+    <br>
+      <div ng-controller="InvoiceController">  
+        <!--
+        <label class="import-file btn btn-default"> -->
+            <input  type="file" multiple ng-model-instant onchange="angular.element(this).scope().setFiles(this)">        
+            <div>Browse for files...</div>
+        <!-- </label> -->
+        <br>
+        <div> Anzahl:{{fileCount}}</div>
+        
+        <li ng-repeat="c in files">{{ c.name }} {{c.size}} {{c.type}} </li>
+      </div>
+</section>
+

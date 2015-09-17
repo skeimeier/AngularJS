@@ -1,0 +1,31 @@
+<section class="section container-fluid">
+  <div ui-content-for="title">
+      <span>Buch - Daetails</span>
+  </div>
+    <h1 class="page-header ">Buch</h1>  
+        <div ng-app="book" ng-controller="book_details as book">
+            <h2 ng-bind="book.title" class="bm-book-title"></h2>
+            <h3 ng-bind="book.subtitle" class="bm-book-subtitle"></h3>
+            <p>
+                <ul>
+                    <li ng-bind-template="ISBN: {{ book.isbn }}"
+                        class="bm-book-isbn"></li>
+                    <li ng-bind-template="Seiten: {{ book.numPages }}"
+                        class="bm-book-num-pages"></li>
+                    <li ng-bind-template="Autor: {{ book.author }}"
+                        class="bm-book-author"></li>
+                    <li>
+                        Verlag:
+                        <a ng-bind="book.publisher.name"
+                           ng-href="{{ book.publisher.url }}"
+                           target="_blank"
+                           class="bm-book-publisher-name">
+                        </a>
+                    </li>
+                </ul>
+            </p>
+            <hr>
+            <p ng-bind="book.abstract" class="bm-book-abstract">
+            </p>
+        </div>
+</section>

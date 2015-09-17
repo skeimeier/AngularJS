@@ -1,0 +1,4 @@
+http://api.themoviedb.org/3/movie/8065?callback=JSON_CALLBACK&api_key=d95d1f942d3f7bb15d036eb9e13b0182&language=de&append_to_response=casts
+http://www.stefan-keimeier.de/mt/abfrage_to_json.php
+http://www.stefan-keimeier.de/mt/get_imdb_rating.php?tt="+imdb_tt
+http://api.themoviedb.org/3/search/movie?api_key=d95d1f942d3f7bb15d036eb9e13b0182&language=de&&query=fight+club
